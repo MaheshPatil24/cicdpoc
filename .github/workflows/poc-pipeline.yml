@@ -3,13 +3,18 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-  branches:
-    include:
-      - dev
-      - main
+on:
+  push:
+    branches:
+    - main
+    - release/*
 
-steps:
-- script: |
-    echo I am main CI pipeline, Use me to trigger CD pipeline.
-  displayName: 'Run a Demo CI - trigger'
+jobs:
+  my_job:
+    name: deploy to staging
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Display the path
+      shell: bash
+      run: echo ""
+
